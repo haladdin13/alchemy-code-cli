@@ -1,22 +1,38 @@
 from config import app, migrate
-# from rich import print
+from rich import print
 
 
 from models import db
-from utils import get_all_recipes, find_recipe_by_id, modify_recipe, erase_recipe, get_all_alchemist, find_alchemist_by_id, add_recipe
+from utils import get_all_recipes, find_recipe_by_id, modify_recipe, erase_recipe, get_all_alchemist, find_alchemist_by_id, add_recipe, combine_recipes
 
 def display_intro():
-  print("Welcome back to the circle...")
+  print(
+     ''' 
+
+      __      ___       ______    __    __    _______  ___      ___  ___  ___       ______    ______    ________    _______  
+     /""\    |"  |     /" _  "\  /" |  | "\  /"     "||"  \    /"  ||"  \/"  |     /" _  "\  /    " \  |"      "\  /"     "| 
+    /    \   ||  |    (: ( \___)(:  (__)  :)(: ______) \   \  //   | \   \  /     (: ( \___)// ____  \ (.  ___  :)(: ______) 
+   /' /\  \  |:  |     \/ \      \/      \/  \/    |   /\\  \/.    |  \\  \/       \/ \    /  /    ) :)|: \   ) || \/    |   
+  //  __'  \  \  |___  //  \ _   //  __  \\  // ___)_ |: \.        |  /   /        //  \ _(: (____/ // (| (___\ || // ___)_  
+ /   /  \\  \( \_|:  \(:   _) \ (:  (  )  :)(:      "||.  \    /:  | /   /        (:   _) \\        /  |:       :)(:      "| 
+(___/    \___)\_______)\_______) \__|  |__/  \_______)|___|\__/|___||___/          \_______)\"_____/   (________/  \_______) 
+                                                                                                                             
+
+
+ '''
+     )
+  print("[bold purple]Welcome back to the circle...[bold purple]")
 
 def display_main_menu():
-  print("Main Menu")
   print("----------")
-  print("1. Open the recipe tome")
-  print("2. View recipies by Alchemist")
-  print("3. Create a new recipe")
-  print("4. Modify a recipe")
-  print("5. Erase a recipe")
-  print("6. Leave the circle")
+  print("[bold magenta]Main Menu[/bold magenta]")
+  print("----------")
+  print("1. [bold green]Open[/bold green] the recipe tome")
+  print("2. [bold green]View[/bold green] recipies by Alchemist")
+  print("3. [bold green]Create[/bold green] a new recipe")
+  print("4. [bold green]Modify[/bold green] a recipe")
+  print("5. [bold green]Erase[/bold green] a recipe")
+  print("6. [bold green]Leave[/bold green] the circle")
   print("----------")
 
 def get_main_choice():
@@ -27,13 +43,16 @@ def display_all_recipes():
     for recipe in recipes:
         print(f"{recipe.id} | {recipe.name}")
     print("----------")
-    print("What is your desire?")
-    print("1. Delve into a recipe's secrets")
-    print("2. Return to the main menu")
+    print("Do you wish to delve into the secrets or combine to create something new?")
+    print("1. [bold green]Delve[/bold green] into a recipe's secrets")
+    print("2. [bold green]Combine[/bold green] two recipes")
+    print("3. [bold green]Return[/bold green] to the main menu")
     print("----------")
     choice = input()
     if choice == "1":
         choose_recipe_by_id()
+    elif choice == "2":
+        combine_recipes()
     else:
         return
     
@@ -47,9 +66,11 @@ def choose_recipe_by_id():
    display_recipe_submenu(recipe)
 
 def display_recipe_submenu(recipe):
-   print("1. Modify recipe")
-   print("2. Erase recipe")
-   print("3. Return to main menu")
+   print("----------")
+   print("What do you wish to do?")
+   print("1. [bold green]Modify[/bold green] recipe")
+   print("2. [bold red]Erase[/bold red] recipe")
+   print("3. [bold green]Return[/bold green] to main menu")
    choice = input()
    handle_recipe_choice(choice, recipe)
 
@@ -68,8 +89,8 @@ def display_all_alchemists():
         print(f"{alchemist.id} | {alchemist.name}")
     print("----------")
     print("Who's tome do you wish to view?")
-    print("1. Procure your desired tome")
-    print("2. Return to the main menu")
+    print("1. [bold green]Procure[/bold green] your desired tome")
+    print("2. [bold green]Return[/bold green] to the main menu")
     print("----------")
     choice = input()
     if choice == "1":
@@ -87,8 +108,8 @@ def choose_alchemist_by_id():
 
 
 def display_alchemist_submenu(alchemist):
-   print("1. View alchemist's recipes")
-   print("2. Return to previous menu")
+   print("1. [bold green]View[/bold green] alchemist's recipes")
+   print("2. [bold green]Return[/bold green] to previous menu")
    print("3. Return to main menu")
    choice = input()
    handle_alchemist_choice(choice, alchemist)
@@ -98,7 +119,7 @@ def handle_alchemist_choice(choice, alchemist):
     if choice == "1":
       display_alchemist_recipes(alchemist)
     elif choice == "2":
-      return
+      return choose_alchemist_by_id()
     else:
       return
     
