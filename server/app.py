@@ -21,16 +21,16 @@ def display_intro():
 
  '''
      )
-  print("[bold purple]Welcome back to the circle...[bold purple]")
+  print("[bold purple]Step forth, seeker of the arcane...[/bold purple]")
 
 def display_main_menu():
   print("----------")
-  print("[bold magenta]Main Menu[/bold magenta]")
+  print("[bold magenta]Sanctum Main Chamber[/bold magenta]")
   print("----------")
-  print("1. [bold green]Open[/bold green] the recipe tome")
-  print("2. [bold green]View[/bold green] recipies by Alchemist")
-  print("3. [bold green]Create[/bold green] a new recipe")
-  print("4. [bold green]Leave[/bold green] the circle")
+  print("1. [bold green]Unveil[/bold green] the tome of recipes")
+  print("2. [bold green]Peer into[/bold green] the archive of Alchemists")
+  print("3. [bold green]Concoct[/bold green] a new recipe")
+  print("4. [bold green]Depart[/bold green] the sanctum")
   print("----------")
 
 def get_main_choice():
@@ -41,10 +41,10 @@ def display_all_recipes():
     for recipe in recipes:
         print(f"{recipe.id} | {recipe.name}")
     print("----------")
-    print("Do you wish to delve into the secrets or combine to create something new?")
-    print("1. [bold green]Delve[/bold green] into a recipe's secrets")
-    print("2. [bold green]Combine[/bold green] two recipes")
-    print("3. [bold green]Return[/bold green] to the main menu")
+    print("Decipher the scripts or combine essences for new alchemy?")
+    print("1. [bold green]Decipher[/bold green] a recipe's secrets")
+    print("2. [bold green]Alchemize[/bold green] two essences")
+    print("3. [bold green]Return[/bold green] to the main chamber")
     print("----------")
     choice = input()
     if choice == "1":
@@ -56,20 +56,20 @@ def display_all_recipes():
     
 
 def choose_recipe_by_id():
-   search_id = input("Enter the ID of the recipe you want to see: ")
+   search_id = input("Enter the numeral of identity to unveil its mysteries: ")
    recipe = find_recipe_by_id(search_id)
    print(
-      f"ID: {recipe.id} | Name: {recipe.name} | Ingredients: {recipe.ingredients} | Description: {recipe.description} | Creation Date: {recipe.creation_date} | Modification Date: {recipe.modification_date}"
+      f"[bold green]ID:[/bold green] {recipe.id} | [bold green]Name:[/bold green] {recipe.name} | [bold green]Ingredients:[/bold green] {recipe.ingredients} | [bold green]Description:[/bold green] {recipe.description} | [bold green]Creation Date:[/bold green] {recipe.creation_date} | [bold green]Modification Date:[/bold green] {recipe.modification_date}"
    )
    display_recipe_submenu(recipe)
 
 def display_recipe_submenu(recipe):
    print("----------")
    print("What do you wish to do?")
-   print("1. [bold green]Modify[/bold green] recipe")
-   print("2. [bold red]Erase[/bold red] recipe")
-   print("3. [bold cyan]Return[/bold cyan] to previous menu")
-   print("4. [bold yellow]Return[/bold yellow] to main menu")
+   print("1. [bold green]Transmute[/bold green] the essence of the recipe")
+   print("2. [bold red]Dissolve[/bold red] the concoction into the aether")
+   print("3. [bold cyan]Decipher[/bold cyan] another recipe")
+   print("4. [bold yellow]Return[/bold yellow] to the sanctum's heart")
    choice = input()
    handle_recipe_choice(choice, recipe)
 
@@ -90,9 +90,9 @@ def display_all_alchemists():
     for alchemist in alchemists:
         print(f"{alchemist.id} | {alchemist.name}")
     print("----------")
-    print("Who's tome do you wish to view?")
-    print("1. [bold green]Procure[/bold green] your desired tome")
-    print("2. [bold green]Return[/bold green] to the main menu")
+    print("Which sage's secrets do you seek to unlock?")
+    print("1. [bold green]Summon[/bold green] the tome of a wise one")
+    print("2. [bold green]Return[/bold green] to the main sanctum")
     print("----------")
     choice = input()
     if choice == "1":
@@ -101,19 +101,19 @@ def display_all_alchemists():
         return
     
 def choose_alchemist_by_id():
-   search_id = input("Enter the ID of the alchemist's recipe tome you wish to see: ")
+   search_id = input("Whose ancient wisdom do you seek to commune with? Apply the numeral of the sage: ")
    alchemist = find_alchemist_by_id(search_id)
    print(
-      f"ID: {alchemist.id} | Name: {alchemist.name} | Experience Level: {alchemist.experienceLevel} | Recipe Number: {alchemist.recipe_number}"
+      f"[bold green]ID:[/bold green] {alchemist.id} | [bold green]Name:[/bold green] {alchemist.name} | [bold green]Experience Level:[/bold green] {alchemist.experienceLevel}"
    )
    display_alchemist_submenu(alchemist)
 
 
 def display_alchemist_submenu(alchemist):
-   print(f"The Book of {alchemist.name}")
-   print("1. [bold green]View[/bold green] alchemist's recipes")
+   print(f"The Codex of {alchemist.name}")
+   print("1. [bold green]Reveal[/bold green] the alchemist's concoctions")
    print("2. [bold green]Return[/bold green] to previous menu")
-   print("3. Return to main menu")
+   print("3. [bold yellow]Return[/bold yellow] to the sanctum's heart")
    choice = input()
    handle_alchemist_choice(choice, alchemist)
 
@@ -137,8 +137,8 @@ def display_alchemist_recipes(alchemist):
 def alchemist_recipe_submenu(alchemist):
     print("----------")
     print("What do you wish to do?")
-    print("1. [bold green]Return[/bold green] to alchemist roster")
-    print("2. [bold yellow]Return[/bold yellow] to main menu")
+    print("1. [bold green]Tread back[/bold green] through the hall of sages")
+    print("2. [bold yellow]Return[/bold yellow] to the sanctum's heart")
     print("----------")
     choice = input()
     if choice == "1":
@@ -149,9 +149,9 @@ def alchemist_recipe_submenu(alchemist):
 
 def create_recipe_menu():
     print("----------")
-    print("Do you want to create a new recipe?")
-    print("1. Create a new recipe")
-    print("2. Return to the main menu")
+    print("Do you wish to bind the ether and craft anew, or shall you return to the sanctum's heart?")
+    print("1. [bold green]Inscribe[/bold green] a new recipe of power")
+    print("2. [bold green]Return[/bold green] to the sanctum's embrace")
     print("----------")
     choice = input()
     if choice == "1":
@@ -177,7 +177,7 @@ if __name__ == "__main__":
       elif choice == "3":
           create_recipe_menu()
       elif choice == "4":
-        print("You have left the circle")
+        print("[italic cyan]You dissolve into the mists, leaving the sanctum... for now.[/italic cyan]")
         break
       else:
         break
