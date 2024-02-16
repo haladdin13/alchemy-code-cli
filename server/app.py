@@ -134,14 +134,35 @@ def display_alchemist_recipes(alchemist):
             print(f"{recipe.id} | {recipe.name}")
     alchemist_recipe_submenu(alchemist)
 
+#select an alchemist's recipe to modify
+
 def alchemist_recipe_submenu(alchemist):
     print("----------")
     print("What do you wish to do?")
+    print("1. [bold green]Delve[/bold green] into an alchemist's recipe")
     print("1. [bold green]Tread back[/bold green] through the hall of sages")
     print("2. [bold yellow]Return[/bold yellow] to the sanctum's heart")
     print("----------")
     choice = input()
     if choice == "1":
+        recipe_id = input("Inscribe the numeral of the recipe of your interest: ")
+        recipe = find_recipe_by_id(recipe_id)
+        if recipe and recipe.alchemistID == alchemist.id:
+           print(f"[bold green]ID:[/bold green] {recipe.id} | [bold green]Name:[/bold green] {recipe.name} | [bold green]Ingredients:[/bold green] {recipe.ingredients} | [bold green]Description:[/bold green] {recipe.description} | [bold green]Creation Date:[/bold green] {recipe.creation_date} | [bold green]Modification Date:[/bold green]")
+           print("----------")
+           print("What is your intention?")
+           print("1. Transmute this recipe")
+           print("2. Dissolve this recipe")
+           print("3. The id is a fickle thing")
+           print("----------")
+           choice = input()
+           if choice == "1":
+              modify_recipe(recipe)
+           elif choice == "2":
+              erase_recipe(recipe)
+           else:
+              return
+    elif choice == "2":
         display_all_alchemists()
     else:
         return

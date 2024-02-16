@@ -16,13 +16,20 @@ def find_recipe_by_id(id):
 
 def add_recipe():
     print("[bold yellow]Concocting a New Recipe[/bold yellow]")
-    new_name = input("[green]Name your creation:[/green] ")
-    new_ingredients = input("[green]What elements shall bind together?[/green] ")
-    new_description = input("[green]Describe its essence and effects:[/green] ")
-    assigned_alchemist_id = input("[green]Whose wisdom guides this brew? Enter the Sage ID:[/green] ")
+    print("[bold green]Name your creation:[/bold green] ")
+    new_name = input()
+    print("[bold green]What elements shall bind together?[/bold green] ")
+    new_ingredients = input()
+    print("[bold green]Describe its essence and effects:[/bold green] ")
+    new_description = input()
+    alchemists = get_all_alchemist()
+    for alchemist in alchemists:
+        print(f"{alchemist.id} | {alchemist.name}")
+    print("[bold green]Whose wisdom guides this brew? Enter the Sage ID:[/bold green] ")
+    assigned_alchemist_id = input()
 
     new_recipe = Recipe(name = new_name, ingredients = new_ingredients, description = new_description, alchemistID = assigned_alchemist_id)
-    
+    print("[bold yellow]A new concoction has been created[/bold yellow]")
     db.session.add(new_recipe)
     db.session.commit()
 
