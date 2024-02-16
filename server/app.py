@@ -30,9 +30,7 @@ def display_main_menu():
   print("1. [bold green]Open[/bold green] the recipe tome")
   print("2. [bold green]View[/bold green] recipies by Alchemist")
   print("3. [bold green]Create[/bold green] a new recipe")
-  print("4. [bold green]Modify[/bold green] a recipe")
-  print("5. [bold green]Erase[/bold green] a recipe")
-  print("6. [bold green]Leave[/bold green] the circle")
+  print("4. [bold green]Leave[/bold green] the circle")
   print("----------")
 
 def get_main_choice():
@@ -70,7 +68,8 @@ def display_recipe_submenu(recipe):
    print("What do you wish to do?")
    print("1. [bold green]Modify[/bold green] recipe")
    print("2. [bold red]Erase[/bold red] recipe")
-   print("3. [bold green]Return[/bold green] to main menu")
+   print("3. [bold cyan]Return[/bold cyan] to previous menu")
+   print("4. [bold yellow]Return[/bold yellow] to main menu")
    choice = input()
    handle_recipe_choice(choice, recipe)
 
@@ -79,6 +78,9 @@ def handle_recipe_choice(choice, recipe):
         modify_recipe(recipe)
     elif choice == "2":
         erase_recipe(recipe)
+
+    elif choice == "3":
+        return display_all_recipes()
     else:
         return
     
@@ -108,6 +110,7 @@ def choose_alchemist_by_id():
 
 
 def display_alchemist_submenu(alchemist):
+   print(f"The Book of {alchemist.name}")
    print("1. [bold green]View[/bold green] alchemist's recipes")
    print("2. [bold green]Return[/bold green] to previous menu")
    print("3. Return to main menu")
@@ -129,6 +132,19 @@ def display_alchemist_recipes(alchemist):
     for recipe in recipes:
         if recipe.alchemistID == alchemist.id:
             print(f"{recipe.id} | {recipe.name}")
+    alchemist_recipe_submenu(alchemist)
+
+def alchemist_recipe_submenu(alchemist):
+    print("----------")
+    print("What do you wish to do?")
+    print("1. [bold green]Return[/bold green] to alchemist roster")
+    print("2. [bold yellow]Return[/bold yellow] to main menu")
+    print("----------")
+    choice = input()
+    if choice == "1":
+        display_all_alchemists()
+    else:
+        return
 
 
 def create_recipe_menu():
@@ -161,7 +177,8 @@ if __name__ == "__main__":
       elif choice == "3":
           create_recipe_menu()
       elif choice == "4":
-        print("Leave the circle")
+        print("You have left the circle")
+        break
       else:
         break
       
